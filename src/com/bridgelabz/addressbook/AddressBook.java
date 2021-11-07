@@ -8,7 +8,8 @@ public class AddressBook {
 
 	/*
 	 * Created method addContact to add the contact details. used scanner to take
-	 * input from user
+	 * input from user. Added editContact method to edit the existing contact.
+	 * Added delete method to delete the contact.
 	 */
 	public static void addContact() {
 		System.out.println("Enter the number of contacts ");
@@ -78,11 +79,21 @@ public class AddressBook {
 		}
 	}
 
+	public static void deleteContact(String name) {
+		for (Contact contact_info : contact) {
+			if (name.equalsIgnoreCase(contact_info.firstName)) {
+				System.out.println("Entered Name found in the contacts, deleting contact");
+				contact.remove(contact_info);
+			} else
+				System.out.println("Entered name not found in the AddressBook");
+		}
+	}
+
 	public static void main(String[] args) {
 		System.out.println("Welcome to address book programming");
 		int i = 1;
 		while (i != 0) {
-			System.out.println("Enter 1 to add contact or  Enter 2 to display details and 3 to show the details.");
+			System.out.println("Enter 1 to add contact or  Enter 2 to edit the name and 3 to show the details.");
 			Scanner sc = new Scanner(System.in);
 			int userChoice = sc.nextInt();
 			switch (userChoice) {
@@ -90,11 +101,16 @@ public class AddressBook {
 				addContact();
 				break;
 			case 2:
-				System.out.println("Enter the first name want to edit");
+				System.out.println("Enter the first name to edit contact");
 				String name = sc.next();
 				editContact(name);
 				break;
 			case 3:
+				System.out.println("Enter the first name to delete contact");
+				String search_Name = sc.next();
+				deleteContact(search_Name);
+				break;
+			case 4:
 				showContacts();
 				break;
 			default:
