@@ -6,12 +6,15 @@ import java.util.Scanner;
 public class AddressBook {
 	static ArrayList<Contact> contact = new ArrayList<>();
 
+	/*
+	 * Created method addContact to add the contact details. used scanner to take
+	 * input from user
+	 */
 	public static void addContact() {
 		System.out.println("Enter the number of contacts ");
 		Scanner sc = new Scanner(System.in);
 		int numberOfContacts = sc.nextInt();
 		for (int i = 0; i < numberOfContacts; i++) {
-			// System.out.println("Enter the details of contact number " + (i + 1));
 			System.out.println("Enter  first name");
 			String firstName = sc.next();
 			System.out.println("Last name");
@@ -28,8 +31,7 @@ public class AddressBook {
 			int zip = sc.nextInt();
 			System.out.println("Enter phone number ");
 			int phoneNum = sc.nextInt();
-			
-Contact details = new Contact(firstName, lastName, address, city, state, phoneNum, zip, email);
+			Contact details = new Contact(firstName, lastName, address, city, state, phoneNum, zip, email);
 			contact.add(details);
 		}
 	}
@@ -37,19 +39,50 @@ Contact details = new Contact(firstName, lastName, address, city, state, phoneNu
 	public static void showContacts() {
 		int i = 1;
 		for (Contact contact_info : contact) {
-			// System.out.println("Details of contact number " + i + " is");
 			System.out.println(contact.toString());
 			i++;
 		}
 	}
 
+	public static void editContact(String name) {
+		Scanner sc = new Scanner(System.in);
+		for (Contact contact_info : contact) {
+			if (name.equalsIgnoreCase(contact_info.firstName)) {
+				System.out.println("Entered Name found in the contacts");
+				System.out.println("Enter the new first name");
+				String firstName = sc.next();
+				contact_info.setFirstName(firstName);
+				System.out.println("Enter the new last name");
+				String lastName = sc.next();
+				contact_info.setLastName(lastName);
+				System.out.println("Enter the new address");
+				String address = sc.next();
+				contact_info.setAddress(address);
+				System.out.println("Enter the new city");
+				String city = sc.next();
+				contact_info.setCity(city);
+				System.out.println("Enter the new state");
+				String state = sc.next();
+				contact_info.setState(state);
+				System.out.println("Enter the new emailID");
+				String email = sc.next();
+				contact_info.setEmail(email);
+				System.out.println("Enter the new zipcode");
+				int zip = sc.nextInt();
+				contact_info.setZip(zip);
+				System.out.println("Enter the new phoneNumber");
+				int phoneNumber = sc.nextInt();
+				contact_info.setPhoneNum(phoneNumber);
+			} else
+				System.out.println("name  is not  found ");
+		}
+	}
+
 	public static void main(String[] args) {
-
 		System.out.println("Welcome to address book programming");
-
 		int i = 1;
 		while (i != 0) {
-			System.out.println("Enter 1 to add contact or  Enter 2 to display details.");
+			System.out.println("Enter 1 to add contact or  Enter 2 to display details and 3 to show the details.");
 			Scanner sc = new Scanner(System.in);
 			int userChoice = sc.nextInt();
 			switch (userChoice) {
@@ -57,6 +90,11 @@ Contact details = new Contact(firstName, lastName, address, city, state, phoneNu
 				addContact();
 				break;
 			case 2:
+				System.out.println("Enter the first name want to edit");
+				String name = sc.next();
+				editContact(name);
+				break;
+			case 3:
 				showContacts();
 				break;
 			default:
