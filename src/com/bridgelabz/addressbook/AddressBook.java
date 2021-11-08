@@ -9,7 +9,7 @@ public class AddressBook {
 	/*
 	 * Created method addContact to add the contact details. used scanner to take
 	 * input from user. Added editContact method to edit the existing contact.
-	 * Added delete method to delete the contact.
+	 * Added delete met
 	 */
 	public static void addContact() {
 		System.out.println("Enter the number of contacts ");
