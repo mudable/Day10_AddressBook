@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -8,8 +9,8 @@ public class AddressBook {
 
 	/*
 	 * Created method addContact to add the contact details. used scanner to take
-	 * input from user. Added editContact method to edit the existing contact.
-	 * Added delete method to delete the contact.
+	 * input from user. Added editContact method to edit the existing contact. Added
+	 * delete method to delete the contact.
 	 */
 	public static void addContact() {
 		System.out.println("Enter the number of contacts ");
@@ -90,31 +91,88 @@ public class AddressBook {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Welcome to address book programming");
+		HashMap<String, AddressBook> addressBooks = new HashMap<>();
+		AddressBook book1 = new AddressBook();
+		AddressBook book2 = new AddressBook();
+		AddressBook book3 = new AddressBook();
+		addressBooks.put("AddressBook1", book1);
+		addressBooks.put("AddressBook2", book2);
+		addressBooks.put("AddressBook3", book3);
+
+		System.out.println("Welcome to Address Book");
+
 		int i = 1;
 		while (i != 0) {
-			System.out.println("Enter 1 to add contact or  Enter 2 to edit the name and 3 to show the details.");
+			System.out.println("Enter 1 to for AddressBook1 2 for AddressBook2 and 3 for AddressBook3");
 			Scanner sc = new Scanner(System.in);
+			int choose_AddressBook = sc.nextInt();
+
+			System.out.println(
+					"Enter 1 to add contact Enter 2 to edit details of contacts Enter 3 for deleting contact Enter 4 for showing details of contacts ");
+			;
 			int userChoice = sc.nextInt();
+
 			switch (userChoice) {
 			case 1:
-				addContact();
+				if (choose_AddressBook == 1)
+					book1.addContact();
+				else if (choose_AddressBook == 2)
+					book2.addContact();
+				else if (choose_AddressBook == 3)
+					book3.addContact();
+				else
+					System.out.println("Option not found");
 				break;
 			case 2:
-				System.out.println("Enter the first name to edit contact");
-				String name = sc.next();
-				editContact(name);
-				break;
+				if (choose_AddressBook == 1) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String name = sc.next();
+					book1.editContact(name);
+					break;
+				} else if (choose_AddressBook == 2) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String name = sc.next();
+					book2.editContact(name);
+					break;
+				} else if (choose_AddressBook == 3) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String name = sc.next();
+					book3.editContact(name);
+					break;
+				}
+
 			case 3:
-				System.out.println("Enter the first name to delete contact");
-				String search_Name = sc.next();
-				deleteContact(search_Name);
-				break;
+				if (choose_AddressBook == 1) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String search_Name = sc.next();
+					book1.deleteContact(search_Name);
+					break;
+				} else if (choose_AddressBook == 2) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String search_Name = sc.next();
+					book2.deleteContact(search_Name);
+					break;
+				}
+				if (choose_AddressBook == 3) {
+					System.out.println("Enter the first name by which u want to edit contact");
+					String search_Name = sc.next();
+					book3.deleteContact(search_Name);
+					break;
+				}
 			case 4:
-				showContacts();
-				break;
+				if (choose_AddressBook == 1) {
+					book1.showContacts();
+					break;
+				} else if (choose_AddressBook == 2) {
+					book2.showContacts();
+					break;
+				} else if (choose_AddressBook == 3) {
+					book3.showContacts();
+					break;
+				}
 			default:
 				System.out.println("Invalid Input");
+				break;
 			}
 		}
 	}
